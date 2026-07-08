@@ -4,14 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Engineering Modern Software That Scales</title>
+
+  <!-- Inter font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     :root {
-      --primary: #1E3A8A;
-      --accent: #06B6D4;
-      --bg: #ffffff;
-      --gray-light: #f3f4f6;
-      --gray: #6b7280;
-      --text: #111827;
+      --primary-navy: #0F172A;
+      --secondary-blue: #2563EB;
+      --accent-cyan: #06B6D4;
+      --bg: #F8FAFC;
+      --text: #334155;
+      --border: #E2E8F0;
     }
 
     * {
@@ -20,11 +27,12 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
+      font-weight: 400; /* Body: Inter 400 */
     }
 
     html {
@@ -52,9 +60,9 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(248, 250, 252, 0.98);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid #e5e7eb;
+      border-bottom: 1px solid var(--border);
     }
 
     .nav {
@@ -65,39 +73,59 @@
     }
 
     .nav-logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .nav-logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .nav-logo-text {
+      font-size: 1rem;
+      font-weight: 700; /* Heading weight */
+      color: var(--primary-navy);
     }
 
     .nav-links {
       display: flex;
       gap: 1.5rem;
       font-size: 0.9rem;
+      font-weight: 500; /* Body: Inter 500 for nav */
     }
 
     .nav-links a {
-      color: #4b5563;
+      color: #64748B;
     }
 
     .nav-links a:hover {
-      color: var(--primary);
+      color: var(--secondary-blue);
     }
 
     .nav-cta {
       margin-left: 1.5rem;
       padding: 0.55rem 1.25rem;
       border-radius: 999px;
-      background: var(--primary);
+      background: var(--secondary-blue);
       color: #fff;
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 600; /* Buttons: Inter 600 */
+      border: none;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .nav-cta[disabled] {
+      pointer-events: none;
     }
 
     /* Hero */
     .hero {
       padding: 4.5rem 0 3.5rem;
-      background: radial-gradient(circle at top left, #e0f2fe 0, #f9fafb 40%);
+      background: radial-gradient(circle at top left, #E0F2FE 0, #F8FAFC 40%);
     }
 
     .hero-layout {
@@ -114,15 +142,17 @@
 
     .hero-title {
       font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
-      font-weight: 700;
+      font-weight: 800; /* Heading: Inter 800 */
       letter-spacing: -0.03em;
+      color: var(--primary-navy);
     }
 
     .hero-subtitle {
       margin-top: 1rem;
-      color: var(--gray);
+      color: var(--text);
       max-width: 32rem;
       font-size: 1rem;
+      font-weight: 400; /* Body: Inter 400 */
     }
 
     .hero-actions {
@@ -132,37 +162,48 @@
       gap: 0.75rem;
     }
 
-    .btn-primary {
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      background: var(--primary);
-      color: #fff;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
+    .btn-primary,
     .btn-secondary {
       padding: 0.75rem 1.5rem;
       border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      background: #fff;
-      color: #111827;
-      font-weight: 600;
+      font-weight: 600; /* Buttons: Inter 600 */
       font-size: 0.95rem;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .btn-primary {
+      background: var(--secondary-blue);
+      color: #fff;
+      border: none;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary-navy);
+      border: 1px solid var(--border);
+    }
+
+    .btn-primary[disabled],
+    .btn-secondary[disabled] {
+      pointer-events: none;
     }
 
     .hero-illustration {
       border-radius: 1.5rem;
       background: #ffffff;
-      border: 1px solid #e5e7eb;
+      border: 1px solid var(--border);
       padding: 1.5rem;
       box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
       font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--text);
     }
 
     .hero-illustration-title {
-      font-weight: 600;
+      font-weight: 700; /* Heading for panel */
       margin-bottom: 0.75rem;
+      color: var(--primary-navy);
     }
 
     .pill-row {
@@ -175,9 +216,10 @@
     .pill {
       padding: 0.35rem 0.75rem;
       border-radius: 999px;
-      background: var(--gray-light);
+      background: #E2E8F0;
       font-size: 0.75rem;
-      color: #374151;
+      color: var(--primary-navy);
+      font-weight: 500;
     }
 
     /* Section headings */
@@ -187,16 +229,19 @@
 
     .section-title {
       font-size: 1.5rem;
-      font-weight: 700;
+      font-weight: 700; /* Inter 700 for section headings */
+      color: var(--primary-navy);
     }
 
     .section-subtitle {
       margin-top: 0.35rem;
-      color: var(--gray);
+      color: var(--text);
       font-size: 0.95rem;
+      max-width: 36rem;
+      font-weight: 400;
     }
 
-    /* Services */
+    /* Grids */
     .grid {
       display: grid;
       gap: 1rem;
@@ -209,24 +254,39 @@
     }
 
     @media (min-width: 1024px) {
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
       .grid-4 {
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
 
+    /* Cards */
     .card {
       background: #ffffff;
       border-radius: 1rem;
-      border: 1px solid #e5e7eb;
+      border: 1px solid var(--border);
       padding: 1rem;
       font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 400;
     }
 
     .card-title {
-      font-weight: 600;
+      font-weight: 600; /* Slightly bolder for card titles */
       margin-bottom: 0.35rem;
+      color: var(--primary-navy);
     }
 
+    .card-meta {
+      margin-top: 0.35rem;
+      font-size: 0.8rem;
+      color: #64748B;
+      font-weight: 400;
+    }
+
+    /* Badges */
     .badge-row {
       display: flex;
       flex-wrap: wrap;
@@ -238,8 +298,9 @@
     .badge {
       padding: 0.25rem 0.6rem;
       border-radius: 999px;
-      background: #eff6ff;
-      color: #1e40af;
+      background: #DBEAFE;
+      color: var(--primary-navy);
+      font-weight: 500;
     }
 
     /* Process timeline */
@@ -261,7 +322,7 @@
     .timeline-step-number {
       font-size: 0.75rem;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--accent-cyan);
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
@@ -270,6 +331,7 @@
       font-weight: 600;
       margin-top: 0.25rem;
       margin-bottom: 0.25rem;
+      color: var(--primary-navy);
     }
 
     /* Contact form */
@@ -288,8 +350,8 @@
     label {
       display: block;
       font-size: 0.8rem;
-      font-weight: 600;
-      color: #4b5563;
+      font-weight: 500;
+      color: #64748B;
       margin-bottom: 0.25rem;
     }
 
@@ -298,9 +360,11 @@
       width: 100%;
       padding: 0.5rem 0.6rem;
       border-radius: 0.5rem;
-      border: 1px solid #d1d5db;
+      border: 1px solid var(--border);
       font: inherit;
       font-size: 0.85rem;
+      color: var(--text);
+      background: #ffffff;
     }
 
     textarea {
@@ -310,21 +374,38 @@
 
     input:focus,
     textarea:focus {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--accent-cyan);
       outline-offset: 1px;
-      border-color: var(--accent);
+      border-color: var(--accent-cyan);
     }
 
     .form-actions {
       margin-top: 0.75rem;
     }
 
+    .btn-form {
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      background: var(--secondary-blue);
+      color: #fff;
+      font-weight: 600; /* Buttons: Inter 600 */
+      font-size: 0.95rem;
+      border: none;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .btn-form[disabled] {
+      pointer-events: none;
+    }
+
     /* Footer */
     footer {
-      border-top: 1px solid #e5e7eb;
+      border-top: 1px solid var(--border);
       padding: 1.5rem 0;
       font-size: 0.8rem;
-      color: #6b7280;
+      color: #64748B;
+      background: #F1F5F9;
     }
 
     .footer-layout {
@@ -336,8 +417,19 @@
     }
 
     .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-logo svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .footer-logo-text {
       font-weight: 700;
-      color: var(--primary);
+      color: var(--primary-navy);
     }
 
     .footer-links {
@@ -356,8 +448,410 @@
   <!-- Navbar -->
   <header>
     <div class="container nav" aria-label="Main">
-      <div class="nav-logo">Company Logo</div>
+      <div class="nav-logo" aria-label="Company logo">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          role="img"
+          aria-hidden="true"
+        >
+          <circle cx="16" cy="16" r="10" fill="#bc002d" />
+        </svg>
+        <span class="nav-logo-text">Hayfield Technologies, Inc</span>
+      </div>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#home">Home</a>
         <a href="#services">Services</a>
-        
+        <a href="#industries">Industries</a>
+        <a href="#technologies">Technologies</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav-cta" type="button" disabled>
+        Schedule a Consultation
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="container hero-layout">
+        <div>
+          <h1 class="hero-title">Engineering Modern Software That Scales</h1>
+          <p class="hero-subtitle">
+            We help organizations modernize, build, and scale software solutions with a focus on the “last mile” of healthcare and enterprise operations—where workflows, data, and people intersect.[page:1]
+          </p>
+          <p class="hero-subtitle">
+            Our work spans enterprise architecture, cloud-native development, AI-driven automation, and system modernization, giving clinics, health systems, and growing businesses software that finally works the way they do.[page:1]
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary" type="button" disabled>
+              Schedule a Consultation
+            </button>
+            <button class="btn-secondary" type="button" disabled>
+              View Services
+            </button>
+          </div>
+        </div>
+        <aside class="hero-illustration" aria-label="Software architecture illustration">
+          <p class="hero-illustration-title">Intelligent architecture for connected care</p>
+          <p>
+            We design cloud infrastructure, APIs, and data flows that bridge legacy systems with modern FHIR-based applications, reducing manual “pajama time” and repetitive data entry for clinicians and staff.[page:1]
+          </p>
+          <p>
+            By wrapping existing EHRs and billing platforms with secure, integration-ready services, we help care teams spend more time with patients and less time wrestling with technology.[page:1]
+          </p>
+          <div class="pill-row">
+            <span class="pill">SMART on FHIR wrappers</span>
+            <span class="pill">Legacy system sync</span>
+            <span class="pill">AI-driven automation</span>
+            <span class="pill">Real-time claims</span>
+            <span class="pill">HL7 &amp; OAuth2</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Services</h2>
+          <p class="section-subtitle">
+            We combine product engineering with deep healthcare and enterprise integration expertise to solve the last mile of your workflows—where data, staff, and patients meet.[page:1]
+          </p>
+        </div>
+        <div class="grid grid-2 grid-4">
+          <article class="card">
+            <h3 class="card-title">Custom Software Development</h3>
+            <p>
+              Design and build tailored applications that fit your clinic or enterprise workflows, rather than forcing your team into generic tools or rigid vendor platforms.[page:1]
+            </p>
+            <p class="card-meta">
+              Patient-facing apps, staff portals, and operations dashboards built around your processes.
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">Enterprise Architecture</h3>
+            <p>
+              Define clear architecture patterns for EHR extensions, data exchanges, and operational systems so new projects plug into a cohesive, well-documented platform.[page:1]
+            </p>
+            <p class="card-meta">
+              Target states, integration blueprints, and governance for multi-system environments.
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">Cloud Solutions (AWS &amp; Azure)</h3>
+            <p>
+              Build cloud-native solutions that connect on-premise systems with secure, scalable services, balancing performance, cost, and regulatory requirements.[page:1]
+            </p>
+            <p class="card-meta">
+              HIPAA-aware architectures, containerized workloads, and automated deployments.
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">AI &amp; Intelligent Automation</h3>
+            <p>
+              Apply AI to automate redundant data entry, optimize cash flow, and surface insights that support better clinical and financial decisions.[page:1]
+            </p>
+            <p class="card-meta">
+              Claim scrubbing, eligibility engines, and propensity-to-pay models tailored to your data.[page:1]
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">Application Modernization</h3>
+            <p>
+              Incrementally modernize legacy lab, billing, and back-office systems without disrupting day-to-day operations, wrapping and extending what already works.[page:1]
+            </p>
+            <p class="card-meta">
+              Wrappers, adapters, and phased migrations that respect existing workflows.[page:1]
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">API Development &amp; Integration</h3>
+            <p>
+              Build clean, well-documented APIs that connect EHRs, billing platforms, and operational tools, using standards like HL7 v2, FHIR, and OAuth 2.0.[page:1]
+            </p>
+            <p class="card-meta">
+              SMART on FHIR apps, secure patient data exchanges, and automation-ready endpoints.[page:1]
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">Database Design &amp; Optimization</h3>
+            <p>
+              Shape schemas and queries that keep your data tier fast and reliable, whether you’re handling clinical encounters, claims, or operational metrics.[page:1]
+            </p>
+            <p class="card-meta">
+              Performance tuning for PostgreSQL, SQL Server, and analytics-ready data models.[page:1]
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">Technical &amp; Advisory Consulting</h3>
+            <p>
+              Partner with senior engineers and advisors to re-think workflows, build realistic roadmaps, and ensure technology investments align with mission and margin.[page:1]
+            </p>
+            <p class="card-meta">
+              Workflow design, product strategy, and architecture reviews for healthcare and enterprise teams.[page:1]
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us / About -->
+    <section id="about" style="background: #EFF4FB;">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Why Choose Us</h2>
+          <p class="section-subtitle">
+            We focus on intelligent software for the last mile of healthcare and enterprise operations—where small changes in workflow and automation make a disproportionate impact.[page:1]
+          </p>
+        </div>
+        <div class="grid grid-2 grid-3">
+          <article class="card">
+            <h3 class="card-title">Enterprise-grade engineering</h3>
+            <p>
+              We design and deliver systems that respect the realities of regulated environments, uptime requirements, and multi-system integration.[page:1]
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">Secure by design</h3>
+            <p>
+              Security and privacy are woven into architecture, data flows, and deployments from day one, not patched in later.[page:1]
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">Cloud-native architecture</h3>
+            <p>
+              We leverage containers, orchestration, and managed cloud services to create platforms that are robust yet adaptable.[page:1]
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">Modern development practices</h3>
+            <p>
+              CI/CD, automated testing, observability, and clean code standards are built into our delivery approach.[page:1]
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">Performance &amp; scalability</h3>
+            <p>
+              We design for concurrency at scale, ensuring systems can handle growing patient volumes and transaction loads.[page:1]
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">Long-term maintainability</h3>
+            <p>
+              Clear boundaries, modular designs, and documentation help future teams iterate without fear.[page:1]
+            </p>
+          </article>
+          <article class="card">
+            <h3 class="card-title">Business-first approach</h3>
+            <p>
+              We prioritize outcomes like reduced manual work, better collections, and improved access over flashy technology.[page:1]
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industries -->
+    <section id="industries">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Industries</h2>
+          <p class="section-subtitle">
+            Our work centers on healthcare organizations and adjacent industries that depend on reliable, compliant, data-rich systems.[page:1]
+          </p>
+        </div>
+        <div class="badge-row">
+          <span class="badge">Healthcare Clinics</span>
+          <span class="badge">Charity Care &amp; Non‑profits</span>
+          <span class="badge">Financial Services</span>
+          <span class="badge">Manufacturing</span>
+          <span class="badge">Supply Chain</span>
+          <span class="badge">Insurance</span>
+          <span class="badge">Professional Services</span>
+        </div>
+        <p class="section-subtitle">
+          In each setting, we help teams make their existing technology work harder for them instead of forcing staff to work around rigid systems.[page:1]
+        </p>
+      </div>
+    </section>
+
+    <!-- Technologies -->
+    <section id="technologies" style="background: #EFF4FB;">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Technologies</h2>
+          <p class="section-subtitle">
+            We use modern, proven technologies to build integrations, automations, and applications that are both robust and maintainable.[page:1]
+          </p>
+        </div>
+        <div class="badge-row">
+          <span class="badge">.NET</span>
+          <span class="badge">C#</span>
+          <span class="badge">ASP.NET Core</span>
+          <span class="badge">Elixir</span>
+          <span class="badge">Phoenix</span>
+          <span class="badge">Svelte</span>
+          <span class="badge">React</span>
+          <span class="badge">TypeScript</span>
+          <span class="badge">PostgreSQL</span>
+          <span class="badge">SQL Server</span>
+          <span class="badge">Docker</span>
+          <span class="badge">Kubernetes</span>
+          <span class="badge">Azure</span>
+          <span class="badge">AWS</span>
+          <span class="badge">Terraform</span>
+          <span class="badge">GitHub Actions</span>
+        </div>
+        <p class="section-subtitle">
+          We also work directly with healthcare standards like HL7 v2, FHIR, SMART on FHIR, and modern identity flows such as OAuth 2.0.[page:1]
+        </p>
+      </div>
+    </section>
+
+    <!-- Engagement Process -->
+    <section id="process">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Engagement Process</h2>
+          <p class="section-subtitle">
+            A four-step process designed to clarify goals, reduce risk, and deliver usable software—not just documents.[page:1]
+          </p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-step">
+            <div class="timeline-step-number">Step 1</div>
+            <div class="timeline-step-title">Discovery</div>
+            <p>
+              We map workflows, systems, and constraints, focusing on where staff spend unnecessary time and where data gets stuck.[page:1]
+            </p>
+          </article>
+          <article class="timeline-step">
+            <div class="timeline-step-number">Step 2</div>
+            <div class="timeline-step-title">Architecture &amp; Planning</div>
+            <p>
+              We design target architectures and phased plans that respect existing investments while opening a path toward modern efficiency.[page:1]
+            </p>
+          </article>
+          <article class="timeline-step">
+            <div class="timeline-step-number">Step 3</div>
+            <div class="timeline-step-title">Development</div>
+            <p>
+              We build integrations, wrappers, and applications iteratively, validating against real workflows and stakeholders.[page:1]
+            </p>
+          </article>
+          <article class="timeline-step">
+            <div class="timeline-step-number">Step 4</div>
+            <div class="timeline-step-title">Launch &amp; Ongoing Support</div>
+            <p>
+              We support rollout, monitor outcomes, and help your team operate and extend the solutions over time.[page:1]
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Ready to Build Your Next Solution?</h2>
+          <p class="section-subtitle">
+            When you are ready to tackle the last mile of your healthcare or enterprise workflows, we’re ready to help you design and deliver software that fits.[page:1]
+          </p>
+        </div>
+        <button class="btn-primary" type="button" disabled>
+          Let's Talk
+        </button>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="background: #EFF4FB;">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Contact</h2>
+          <p class="section-subtitle">
+            Tell us about your organization, your current technology landscape, and the problems you’d like to solve. We’ll respond with a focused, technical perspective—not a generic pitch.[page:1]
+          </p>
+        </div>
+        <form class="form" aria-label="Contact form">
+          <div class="grid form-row-2">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" type="text" name="name" />
+            </div>
+            <div>
+              <label for="company">Company</label>
+              <input id="company" type="text" name="company" />
+            </div>
+          </div>
+          <div class="grid form-row-2">
+            <div>
+              <label for="email">Email</label>
+              <input id="email" type="email" name="email" />
+            </div>
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" type="tel" name="phone" />
+            </div>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Briefly describe your project, timelines, existing systems (EHR, billing, lab, etc.), and any key outcomes you’re aiming for."
+            ></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn-form" type="button" disabled>
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-layout">
+      <div>
+        <div class="footer-logo">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 32 32"
+            role="img"
+            aria-hidden="true"
+          >
+            <circle cx="16" cy="16" r="10" fill="#bc002d" />
+          </svg>
+          <span class="footer-logo-text">Hayfield Technologies, Inc</span>
+        </div>
+        <div>
+          Intelligent software and integrations for the last mile of healthcare and enterprise workflows, built with modern architecture and sustainable engineering practices.[page:1]
+        </div>
+      </div>
+      <div class="footer-links" aria-label="Social links">
+        <a href="mailto:hello@example.com">hello@example.com</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="GitHub">GitHub</a>
+      </div>
+      <div>© <span id="year"></span> Hayfield Technologies, Inc. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple copyright year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
