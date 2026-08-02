@@ -440,10 +440,8 @@
 
           const result = await res.json();
 
-          if (!res.ok || !result.success) {
-            throw new Error(
-              result.errors?.[0]?.message || "Failed to send message"
-            );
+          if (!res.ok) {
+            throw new Error("Failed to send message");
           }
 
           messageEl.className = "form-message success";
