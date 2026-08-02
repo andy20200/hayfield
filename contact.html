@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us — Hayfield Technologies, Inc</title>
+
+  <!-- Inter font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --primary-navy: #0F172A;
+      --secondary-blue: #2563EB;
+      --accent-cyan: #06B6D4;
+      --bg: #F8FAFC;
+      --text: #334155;
+      --border: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout helpers */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(248, 250, 252, 0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .nav-logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .nav-logo-text {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: #64748B;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary-blue);
+    }
+
+    .nav-cta {
+      margin-left: 1.5rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: 999px;
+      background: var(--secondary-blue);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .nav-cta[disabled] {
+      pointer-events: none;
+    }
+
+    /* Section headings */
+    .section-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+    }
+
+    .section-subtitle {
+      margin-top: 0.35rem;
+      color: var(--text);
+      font-size: 0.95rem;
+      max-width: 36rem;
+      font-weight: 400;
+    }
+
+    /* Contact form */
+    .form {
+      display: grid;
+      gap: 0.75rem;
+      max-width: 600px;
+    }
+
+    @media (min-width: 640px) {
+      .form-row-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #64748B;
+      margin-bottom: 0.25rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      font: inherit;
+      font-size: 0.85rem;
+      color: var(--text);
+      background: #ffffff;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: 2px solid var(--accent-cyan);
+      outline-offset: 1px;
+      border-color: var(--accent-cyan);
+    }
+
+    .form-actions {
+      margin-top: 0.75rem;
+    }
+
+    .btn-form {
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      background: var(--secondary-blue);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-form:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-form:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Form messages */
+    .form-message {
+      margin-top: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.85rem;
+      display: none;
+    }
+    .form-message.success {
+      display: block;
+      background: #e6ffed;
+      color: #1f6f2e;
+      border: 1px solid #b7e4c2;
+    }
+    .form-message.error {
+      display: block;
+      background: #ffeef0;
+      color: #a31515;
+      border: 1px solid #f5c6cb;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 0;
+      font-size: 0.8rem;
+      color: #64748B;
+      background: #F1F5F9;
+    }
+
+    .footer-layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-logo svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .footer-logo-text {
+      font-weight: 700;
+      color: var(--primary-navy);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="container nav" aria-label="Main">
+      <div class="nav-logo" aria-label="Company logo">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          role="img"
+          aria-hidden="true"
+        >
+          <circle cx="16" cy="16" r="10" fill="#bc002d" />
+        </svg>
+        <span class="nav-logo-text">Hayfield Technologies, Inc</span>
+      </div>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/#home">Home</a>
+        <a href="/#services">Services</a>
+        <a href="/#industries">Industries</a>
+        <a href="/#technologies">Technologies</a>
+        <a href="/#about">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+      <button class="nav-cta" type="button" disabled>
+        Schedule a Consultation
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Contact -->
+    <section id="contact" style="background: #EFF4FB; min-height: calc(100vh - 140px);">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Contact</h2>
+          <p class="section-subtitle">
+            Tell us about your organization, your current technology landscape, and the problems you’d like to solve. We’ll respond with a focused, technical perspective—not a generic pitch.
+          </p>
+        </div>
+
+        <form id="contact-form" class="form" aria-label="Contact form">
+          <div class="grid form-row-2">
+            <div class="col-6">
+              <label for="firstname">First name *</label>
+              <input id="firstname" type="text" name="firstname" required />
+            </div>
+            <div>
+              <label for="lastname">Last name *</label>
+              <input id="lastname" type="text" name="lastname" required />
+            </div>
+          </div>
+
+          <div class="grid form-row-2">
+            <div>
+              <label for="email">Email *</label>
+              <input id="email" type="email" name="email" required />
+            </div>
+            <div>
+              <label for="company">Company</label>
+              <input id="company" type="text" name="company" />
+            </div>
+          </div>
+
+          <div class="grid form-row-2">
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" type="tel" name="phone" />
+            </div>
+            <div>
+              <label for="subject">Subject</label>
+              <input id="subject" type="text" name="subject" />
+            </div>
+          </div>
+
+          <div>
+            <label for="message">Message *</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              placeholder="Briefly describe your project, timelines, existing systems (EHR, billing, lab, etc.), and any key outcomes you’re aiming for."
+            ></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button id="submit-btn" class="btn-form" type="submit">
+              Submit
+            </button>
+          </div>
+
+          <div id="form-message" class="form-message"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-layout">
+      <div>
+        <div class="footer-logo">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 32 32"
+            role="img"
+            aria-hidden="true"
+          >
+            <circle cx="16" cy="16" r="10" fill="#bc002d" />
+          </svg>
+          <span class="footer-logo-text">Hayfield Technologies, Inc</span>
+        </div>
+        <div>
+          Intelligent software and integrations for the last mile of healthcare and enterprise workflows, built with modern architecture and sustainable engineering practices.
+        </div>
+      </div>
+      <div class="footer-links" aria-label="Social links">
+        <a href="#">info @ hayfieldinc.com</a>
+      </div>
+      <div>© <span id="year"></span> Hayfield Technologies, Inc. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple copyright year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Contact form API integration
+    (function () {
+      const API_URL = "https://delicate-thunder-926e.sysb2b.workers.dev/api/contacts";
+
+      const form = document.getElementById("contact-form");
+      const submitBtn = document.getElementById("submit-btn");
+      const messageEl = document.getElementById("form-message");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        submitBtn.disabled = true;
+        messageEl.className = "form-message";
+        messageEl.textContent = "";
+
+        const data = {
+          firstname: form.firstname.value.trim(),
+          lastname: form.lastname.value.trim(),
+          email: form.email.value.trim(),
+          company: form.company.value.trim() || undefined,
+          phone: form.phone.value.trim() || undefined,
+          subject: form.subject.value.trim() || undefined,
+          message: form.message.value.trim(),
+        };
+
+        try {
+          const res = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          const result = await res.json();
+
+          if (!res.ok || !result.success) {
+            throw new Error(
+              result.errors?.[0]?.message || "Failed to send message"
+            );
+          }
+
+          messageEl.className = "form-message success";
+          messageEl.textContent =
+            "Thanks! Your message has been sent. We'll be in touch soon.";
+          form.reset();
+        } catch (err) {
+          messageEl.className = "form-message error";
+          messageEl.textContent =
+            err instanceof Error
+              ? err.message
+              : "Something went wrong. Please try again.";
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
