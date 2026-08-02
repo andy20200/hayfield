@@ -810,7 +810,7 @@
             ></textarea>
           </div>
           <div class="form-actions">
-            <button class="btn-form" type="button" disabled>
+            <button class="btn-form" type="button">
               Submit
             </button>
           </div>
@@ -851,6 +851,63 @@
   <script>
     // Simple copyright year
     document.getElementById("year").textContent = new Date().getFullYear();
+   
+    // Simple copyright year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Contact form API integration
+    (function () {
+      const API_URL = "https://delicate-thunder-926e.sysb2b.workers.dev/api/contacts";
+
+      const form = document.getElementById("contact-form");
+      const submitBtn = document.getElementById("submit-btn");
+      const messageEl = document.getElementById("form-message");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        submitBtn.disabled = true;
+        messageEl.className = "form-message";
+        messageEl.textContent = "";
+
+        const data = {
+          firstname: form.firstname.value.trim(),
+          lastname: form.lastname.value.trim(),
+          email: form.email.value.trim(),
+          company: form.company.value.trim() || undefined,
+          phone: form.phone.value.trim() || undefined,
+          subject: form.subject.value.trim() || undefined,
+          message: form.message.value.trim(),
+        };
+
+        try {
+          const res = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          const result = await res.json();
+
+          if (!res.ok) {
+            throw new Error("Failed to send message");
+          }
+
+          messageEl.className = "form-message success";
+          messageEl.textContent =
+            "Thanks! Your message has been sent. We'll be in touch soon.";
+          form.reset();
+        } catch (err) {
+          messageEl.className = "form-message error";
+          messageEl.textContent =
+            err instanceof Error
+              ? err.message
+              : "Something went wrong. Please try again.";
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    })();
   </script>
 </body>
 </html>
