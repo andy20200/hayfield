@@ -775,17 +775,17 @@
           <div class="grid form-row-2">
             <div>
               <label for="firstname">First name *</label>
-              <input id="firstname" type="text" name="name" required />
+              <input id="firstname" type="text" name="firstname" required  minlength="2" maxlength="20"/>
             </div>
              <div>
               <label for="lastname">Last name *</label>
-              <input id="lastname" type="text" name="name" required />
+              <input id="lastname" type="text" name="lastname" required   minlength="2" maxlength="20" />
             </div>
             </div>
             <div class="grid form-row-2">
             <div>
               <label for="email">Email *</label>
-              <input id="email" type="email" name="email" required />
+              <input id="email" type="email" name="email" required   maxlength="50"/>
             </div>
           </div>
 
@@ -804,10 +804,12 @@
             <div>
               <label for="preferred_date">Preferred date *</label>
               <input id="preferred_date" type="date" name="preferred_date" required />
+              
             </div>
             <div>
               <label for="preferred_time">Preferred time *</label>
-              <input id="preferred_time" type="time" name="preferred_time" required />
+              <input id="preferred_time" type="time" name="preferred_time"  min="09:00"   max="17:00"   step="1800" required />
+             
             </div>
           </div>
 
@@ -824,7 +826,7 @@
 
           <div>
             <label for="topic">Topic</label>
-            <input id="topic" type="text" name="topic" placeholder="e.g. Architecture review, product strategy" />
+            <input id="topic" type="text" name="topic" placeholder="e.g. Architecture review, product strategy"   minlength="5" maxlength="20"/>
           </div>
 
           <div>
@@ -832,7 +834,7 @@
             <textarea
               id="notes"
               name="notes"
-              placeholder="Briefly describe your project, timelines, existing systems, and any key outcomes you’re aiming for."
+              placeholder="Briefly describe your project, timelines, existing systems, and any key outcomes you’re aiming for."   minlength="5" maxlength="400"
             ></textarea>
           </div>
 
@@ -877,6 +879,17 @@
   </footer>
 
   <script>
+      const dateInput = document.getElementById("preferred_date");
+       const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+     function formatLocalDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  }
+  dateInput.min = formatLocalDate(tomorrow);
     // Simple copyright year
     document.getElementById("year").textContent = new Date().getFullYear();
 
