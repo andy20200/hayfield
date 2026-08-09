@@ -441,3 +441,24 @@ footer {
     display: none;
   }
 }
+input, textarea, select {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: #ffffff;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,...chevron...");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  padding-right: 2rem;
+  cursor: pointer;
+}
