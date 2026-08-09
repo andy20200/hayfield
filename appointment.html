@@ -74,7 +74,7 @@
           <div class="grid form-row-2">
             <div>
               <label for="company">Company</label>
-              <input id="company" type="text" name="company"  required min=""/>
+              <input id="company" type="text" name="company"  required min="5" maxlength="50"/>
             </div>
             <div>
               <label for="phone">Phone</label>
@@ -109,7 +109,7 @@
 
           <div>
             <label for="topic">Topic</label>
-            <input id="topic" type="text" name="topic" placeholder="e.g. Architecture review, product strategy"   minlength="5" maxlength="20"/>
+            <input id="topic" type="text" name="topic" placeholder="e.g. Architecture review, product strategy"   minlength="5" maxlength="20" required/>
           </div>
 
           <div>
@@ -117,7 +117,7 @@
             <textarea
               id="notes"
               name="notes"
-              placeholder="Briefly describe your project, timelines, existing systems, and any key outcomes you’re aiming for."   minlength="5" maxlength="400"
+              placeholder="Briefly describe your project, timelines, existing systems, and any key outcomes you’re aiming for."   minlength="5" maxlength="400" required
             ></textarea>
           </div>
 
