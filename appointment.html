@@ -74,7 +74,7 @@
           <div class="grid form-row-2">
             <div>
               <label for="company">Company</label>
-              <input id="company" type="text" name="company" />
+              <input id="company" type="text" name="company"  required min=""/>
             </div>
             <div>
               <label for="phone">Phone</label>
@@ -90,7 +90,7 @@
             </div>
             <div>
               <label for="preferred_time">Preferred time *</label>
-              <input id="preferred_time" type="time" name="preferred_time"    required />
+              <input id="preferred_time" type="time" name="preferred_time"  required />
              
             </div>
           </div>
@@ -162,6 +162,7 @@
   </footer>
 
   <script>
+    const timeInput = document.getElementById("preferred_time");
       const dateInput = document.getElementById("preferred_date");
        const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -173,6 +174,8 @@
     return `${year}-${month}-${day}`;
   }
   dateInput.min = formatLocalDate(tomorrow);
+  dateInput.value=dateInput.min;
+  timeInput.value="09:00"
     // Simple copyright year
     document.getElementById("year").textContent = new Date().getFullYear();
 
