@@ -113,9 +113,11 @@
       color: #fff;
       font-size: 0.9rem;
       font-weight: 600; /* Buttons: Inter 600 */
-      border: none;
-      cursor: not-allowed;
-      opacity: 0.6;
+      /* border: none;
+      cursor: not-allowed; 
+      opacity: 0.6;*/
+      border:0px;
+      cursor:pointer;
     }
 
     .nav-cta[disabled] {
@@ -132,6 +134,29 @@
       display: grid;
       gap: 2.5rem;
     }
+.button-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.2s;
+
+
+    margin-left: 1.5rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 600; /* Buttons: Inter 600 */
+    
+}
+
+.button-link:hover {
+  background-color: #0056b3;
+}
 
     @media (min-width: 768px) {
       .hero-layout {
@@ -168,8 +193,7 @@
       border-radius: 999px;
       font-weight: 600; /* Buttons: Inter 600 */
       font-size: 0.95rem;
-      cursor: not-allowed;
-      opacity: 0.6;
+       
     }
 
     .btn-primary {
@@ -488,9 +512,8 @@
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="nav-cta" type="button" disabled>
-        Schedule a Consultation
-      </button>
+      <a href="#services" class="button-link">Schedule a Consultation</a>
+           
     </div>
   </header>
 
@@ -507,12 +530,9 @@
             Our work spans enterprise architecture, cloud-native development, AI-driven automation, and system modernization, giving clinics, health systems, and growing businesses software that finally works the way they do.
           </p>
           <div class="hero-actions">
-            <button class="btn-primary" type="button" disabled>
-              Schedule a Consultation
-            </button>
-            <button class="btn-secondary" type="button" disabled>
-              View Services
-            </button>
+           <a href="#services" class="button-link">Schedule a Consultation</a>
+            
+            <a href="#services" class="button-link">View Services</a>
           </div>
         </div>
         <aside class="hero-illustration" aria-label="Software architecture illustration">
